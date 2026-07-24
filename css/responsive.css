@@ -82,6 +82,11 @@
         z-index: 200;
     }
 
+    main {
+    padding-top: 0px;
+    overflow: hidden;
+}
+
     .logo-text {
         font-size: 15px;
         font-weight: normal;
@@ -418,9 +423,9 @@
         z-index: 199;
     }
 
-    nav.is-open {
+    /* nav.is-open {
         height: calc(100vh - 70px);
-    }
+    } */
 
     .nav-list {
         flex-direction: column;
