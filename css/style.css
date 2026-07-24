@@ -1,0 +1,1074 @@
+@charset "utf-8";
+
+/* ==========================================
+    🐈　リセットCSS
+   ========================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    background-color: #FAF8F5;
+    color: #333333;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
+}
+
+/* ==========================================
+    🐈　アニメーション
+   ========================================== */
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 左から */
+.fade-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ふわっと拡大しながら */
+.fade-scale {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-scale.is-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ==========================================
+    🐈　ヘッダー
+   ========================================== */
+
+.logo,
+.logo p {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    /* 念のためリンクの下線も消しておきます */
+    color: #333;
+    /* 文字色を黒に固定 */
+}
+
+.logo img {
+    width: 35px;
+    margin-right: 6px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 4%;
+    box-sizing: border-box;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 200;
+}
+
+/* ナビゲーション全体のエリアを右側に寄せる */
+nav {
+    margin-left: auto;
+    /* ロゴがある場合、メニューを自動で右端に寄せます */
+}
+
+/* メニューの文字を横並びにする */
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    /* メニューごとの間隔（好みの幅に調整してください） */
+    list-style: none;
+    /* 箇条書きのドット（点）を消す */
+    margin: 0;
+    padding: 0;
+}
+
+ul a {
+    color: #333;
+    /* 文字の色 */
+    font-size: 14px;
+    white-space: nowrap;
+    /* 画面が狭くなっても文字が途中で改行されないようにする */
+}
+
+/* ハンバーガーボタンは常に表示 */
+.burger-btn {
+    display: block;
+    margin-left: auto;
+    width: 28px;
+    height: 20px;
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.burger-btn span {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+}
+
+.burger-btn span:nth-child(1) { top: 0; }
+.burger-btn span:nth-child(2) { top: 9px; }
+.burger-btn span:nth-child(3) { top: 18px; }
+
+.burger-btn.is-active span:nth-child(1) {
+    top: 9px;
+    transform: rotate(45deg);
+}
+.burger-btn.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.burger-btn.is-active span:nth-child(3) {
+    top: 9px;
+    transform: rotate(-45deg);
+}
+
+/* メニューが開いている時（PC・スマホ共通） */
+nav.is-open {
+    display: block;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 99;
+}
+
+nav.is-open .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 20px 4%;
+}
+
+nav.is-open .nav-list li {
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+}
+
+#service-page,
+#price-page,
+#flow-page,
+#contact-page {
+    scroll-margin-top: 80px;
+}
+
+main {
+    padding-top: 100px;
+}
+
+/* ==========================================
+    🐈　ファーストビュー
+   ========================================== */
+
+#mainvisual {
+    position: relative;
+    /* 追加：テキストの配置基準にする */
+    width: 100vw;
+    height: calc(100vh - 100px);
+    overflow: hidden;
+    /* はみ出し防止（必要に応じて） */
+}
+
+#mainvisual img {
+    width: 100vw;
+    height: calc(100vh - 100px);
+    object-fit: cover;
+    object-position: center;
+
+    animation: fadeInImage 1.4s ease forwards;
+    opacity: 0;
+}
+
+#mainvisual .main-title {
+    position: absolute;
+    top: 50px;
+    right: 60px;
+
+    writing-mode: vertical-rl;
+    /* 縦書きにする */
+
+    /* 見た目の調整 */
+    color: #fff;
+    font-size: 26px;
+    letter-spacing: 0.3em;
+    font-weight: normal;
+
+    animation: fadeInUp 1.2s ease 0.6s forwards;
+    opacity: 0;
+}
+
+.wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    /* 画面中央に寄せるための必須コード */
+    padding: 0 20px;
+    /* スマホ時の左右の最低余白 */
+}
+
+#mainvisual .sub-title {
+    position: absolute;
+    top: 160px;
+    right: 103px;
+
+    writing-mode: vertical-rl;
+    /* 縦書きにする */
+
+    /* 見た目の調整 */
+    color: #fff;
+    font-size: 17px;
+    letter-spacing: 0.4em;
+    font-weight: normal;
+
+    animation: fadeInUp 1.5s ease 0.9s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInImage {
+    from {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+    🐈　コンセプトページ
+   ========================================== */
+
+/* 「CONCEPT」の縦書きテキスト（位置と回転の微調整） */
+.section-container .sub-category {
+    font-size: 17px;
+    letter-spacing: 0.1em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    writing-mode: vertical-rl;
+    white-space: nowrap;
+    line-height: 1;
+    margin: 0;
+}
+
+#concept-page {
+    margin-top: 100px;
+}
+
+.concept-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+    width: 100%;
+}
+
+#concept-page.section-container,
+#service-page.section-container,
+#price-page.section-container,
+#flow-page.section-container,
+#faq-page.section-container,
+#contact-page.section-container {
+    padding-left: 30px;
+    padding-right: 40px;
+}
+
+.section-container {
+    position: relative;
+    margin-top: 120px;
+    margin-bottom: 120px;
+    box-sizing: border-box;
+}
+
+/* コンセプトの見出しの微調整（必要に応じて） */
+.concept-title {
+    font-size: 46px;
+    font-weight: normal;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+/* 画像の上部余白をリセット（flexの枠を分けたので margin-top は不要になります） */
+.section-image {
+    width: 40%;
+    max-width: 340px;
+    height: auto;
+    object-fit: cover;
+    margin-top: 0;
+}
+
+#concept-page h1 {
+    font-size: 46px;
+    /* カンプ通り48pxに設定 */
+    font-weight: normal;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 30px;
+    /* 見出しと本文の間の余白 */
+    max-width: 100%;
+}
+
+.section-body {
+    flex: 1;
+    max-width: 520px;
+}
+
+.section-body p {
+    font-size: 20px;
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+/* 右側：画像エリア */
+.section-image {
+    width: 40%;
+    max-width: 340px;
+    height: auto;
+    object-fit: cover;
+    margin-top: 0;
+}
+
+/* VIEW MORE ボタン */
+.btn-case-1-5 {
+    display: inline-block;
+    margin-top: 20px;
+    /* テキストとの間の余白 */
+    margin-bottom: 0;
+}
+
+.btn-case-1-5 a {
+    display: flex;
+    align-items: center;
+    color: #242424 !important;
+    font-size: 16px;
+    /* 文字サイズ */
+    text-decoration: none !important;
+    letter-spacing: 0.1em;
+}
+
+.btn-case-1-5 a .txt {
+    position: relative;
+}
+
+/* テキストの下線（通常時・ホバー時） */
+.btn-case-1-5 a .txt::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: -0.1em;
+    width: 100%;
+    height: 1px;
+    background-color: #242424;
+    transition: transform .3s;
+}
+
+.btn-case-1-5 a .txt::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: -0.1em;
+    width: 100%;
+    height: 1px;
+    transform: scale(0, 1);
+    transform-origin: right top;
+    background-color: #e77c3a;
+    transition: transform .3s;
+}
+
+.btn-case-1-5 a:hover .txt {
+    color: #e77c3a;
+}
+
+.btn-case-1-5 a:hover .txt::after {
+    transform-origin: left top;
+    transform: scale(1, 1);
+}
+
+/* 丸アイコン・矢印 */
+.btn-case-1-5 a .arrow {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    margin-left: 12px;
+}
+
+/* 丸背景 */
+.btn-case-1-5 a .arrow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background-color: #242424;
+    border-radius: 50%;
+    transition: transform .6s ease, background-color .3s;
+}
+
+/* CSS矢印 (＞) */
+.btn-case-1-5 a .arrow::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    /*中央へ */
+    width: 5px;
+    height: 5px;
+    border-top: 1.5px solid #fff;
+    border-right: 1.5px solid #fff;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: transform .3s ease;
+}
+
+/* ホバー時の丸背景変化と矢印スライド */
+.btn-case-1-5 a:hover .arrow::before {
+    transform: scale(1.3);
+    background-color: #e77c3a;
+}
+
+.btn-case-1-5 a:hover .arrow::after {
+    left: 48%;
+}
+
+/* ==========================================
+    🐈　サービスページ
+   ========================================== */
+.section-container h1 {
+    font-size: 46px;
+    font-weight: normal;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 30px;
+    margin-left: 0;
+    /*★左側のズレを防ぐため、マージンをリセット*/
+}
+
+.services-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+}
+
+/* 子要素（各サービスカード：li） */
+.services-list li {
+    width: calc((100% - 150px) / 3);
+    display: flex;
+    flex-direction: column;
+    /* カード内の「画像」「数字」「説明」を縦並びにする */
+    align-items: flex-start;
+    /* カード内のコンテンツを左揃えに */
+}
+
+/* サービス内の画像が飛び出さないように調整 */
+.services-list li img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.number {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    color: #FF9A5B;
+    font-family: "Inter", sans-serif;
+}
+
+.service-title {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.service-text {
+    font-size: 15px;
+    display: block;
+    width: 100%;
+}
+
+/* ==========================================
+    🐈　料金表ページ
+   ========================================== */
+
+/* 3枚並べるための親要素 */
+.price-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* または stretch */
+    gap: 30px;
+    margin-top: 80px;
+    max-width: 1100px;
+    /* 全体幅の上限 */
+    margin-left: auto;
+    /* 中央寄せ */
+    margin-right: auto;
+}
+
+.price-container img {
+    width: 20px;
+    /* 少し小ぶりにするとスッキリします */
+    height: auto;
+}
+
+/* ★カード共通スタイル */
+.price-card {
+    flex: 1;
+    /* ★3枚のカードの横幅をピッタリ揃える */
+    background-color: #fff;
+    /* 背景色をつける */
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 30px 24px;
+    /* ★内側の余白 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    /* ほんのり影 */
+    text-align: center;
+    transition: transform 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* 真ん中のカード基準設定 */
+.price-card.featured {
+    position: relative;
+    border: 1px solid #BB6000;
+    z-index: 1;
+    /* バッジなどが隠れないように手前に */
+}
+
+/* 普通のカードのホバー（上に8px浮く） */
+.price-card:hover {
+    transform: translateY(-8px);
+}
+
+/* ★真ん中のカードのホバー（1.05倍の大きさを保ったまま上に8px浮く！） */
+.price-card.featured:hover {
+    transform: scale(1.05) translateY(-8px);
+}
+
+/* １番人気バッジのデザイン */
+.badge {
+    position: absolute;
+    top: -46px;
+
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* ★リスト（チェック項目）の表示を整える */
+.price-card ul {
+    list-style: none;
+    /* ポッチを消す */
+    padding: 0 0 0 25px;
+    margin: 24px 0;
+    text-align: left;
+    /* リストは左揃えにすると綺麗に揃います */
+    display: inline-block;
+    /* 左揃えにしたリスト自体をカード中央に置く */
+}
+
+.price-card li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.price-card h2 {
+    font-size: 20px;
+}
+
+.price {
+    font-family: "Inter", sans-serif;
+    font-size: 36px;
+    font-weight: thin;
+    margin: 5px;
+}
+
+.price span {
+    font-size: 15px;
+}
+
+/* ==========================================
+    🐈　ご相談の流れページ
+   ========================================== */
+#flow-page .stepbarwrap {
+    margin: 32px 0;
+    position: relative;
+}
+
+.steptitle {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* 丸のサイズを34pxに固定 */
+.stepcircle {
+    display: inline-block;
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    background-color: #FF9A5B;
+    color: #fff;
+    text-align: center;
+    flex-shrink: 0;
+    /* 画面が狭くなっても丸が潰れないように設定 */
+    position: relative;
+    z-index: 1;
+
+    /* 数字のサイズを24pxに */
+    span {
+        display: inline-block;
+        font-size: 23px;
+        line-height: 42px;
+        /* 丸の高さ（34px）に合わせることで上下中央になります */
+        letter-spacing: -0.05em;
+        /* 2桁の数字が丸からはみ出るのを防ぐ微調整 */
+    }
+}
+
+.title {
+    margin: 0 0 0 12px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.steptxt {
+    /* 丸の横幅（34px）＋文字との隙間を考えて、左余白を調整 */
+    padding-left: 46px;
+    margin-top: 8px;
+}
+
+.steptxt .txt {
+    font-size: 0.9em;
+}
+
+
+/* 縦線の位置を34pxの丸に合わせて修正 */
+.stepline {
+    width: 2px;
+    /* 丸の中心（top: 17px）からスタートして、次のブロックの手前まで伸ばす */
+    height: calc(100% + 42px);
+    background-color: #FF9A5B;
+    position: absolute;
+    top: 21px;
+    left: 21px;
+    /* 34pxの丸のちょうど真ん中（半分） */
+}
+
+.flow-container {
+    background-color: #fff;
+    border: 1px solid #666666;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 800px;
+    /* 横長の枠。数値はお好みで調整OK */
+    margin: 0 auto;
+    padding: 15px 80px;
+    border-radius: 3%;
+}
+
+.flowlist {
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+/* ==========================================
+    🐈　よくあるご質問ページ
+   ========================================== */
+.faq-item {
+    max-width: 500px;
+    /* Q〜＋のまとまりの全体幅*/
+    margin-left: auto;
+    margin-right: 0;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+}
+
+.faq-item:first-child {
+    border-top: 1px solid #ddd;
+}
+
+.faq-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #FF9A5B;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.faq-question {
+    flex: 0 1 auto;
+    margin: 0;
+    font-size: 15px;
+    text-align: left;
+    /* right → left */
+}
+
+/* 解答も同じ幅・同じ位置で表示 */
+.faq-content {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-right: 18%;
+    padding: 16px 0 0;
+}
+
+/* ＋アイコン */
+.faq-icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    margin-left: auto;
+    /* ← これで常に右端に固定される */
+}
+
+.faq-icon::before,
+.faq-icon::after {
+    content: '';
+    position: absolute;
+    background-color: #333;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.faq-icon::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+}
+
+.faq-icon::after {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+/* openになったら縦棒を消して「－」に */
+.faq-item[open] .faq-icon::after {
+    opacity: 0;
+}
+
+.faq-content p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+
+/* ==========================================
+    🐈　お問い合わせページ
+   ========================================== */
+
+.contact-form {
+    background-color: #F1EDE4;
+    border-radius: 3%;
+    padding: 50px 60px;
+    box-sizing: border-box;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    left: 5px;
+}
+
+.form-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+/* ラベル部分：幅を揃えて左詰め */
+.form-item label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 220px;
+    padding-top: 8px;
+}
+
+.form-item label span:first-child {
+    font-size: 15px;
+    white-space: nowrap;
+    width: 130px;
+    /* ← 追加：これで"必須"の開始X位置が揃う */
+    flex-shrink: 0;
+}
+
+/* 必須バッジ */
+.required {
+    display: inline-block;
+    flex-shrink: 0;
+    background-color: #FF9A5B;
+    color: #fff;
+    font-size: 11px;
+    line-height: 1;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* 入力欄：幅を揃える */
+.form-item input,
+.form-item select,
+.form-item textarea {
+    flex: 1;
+    max-width: 420px;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-family: inherit;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
+}
+
+.form-item input:focus,
+.form-item select:focus,
+.form-item textarea:focus {
+    outline: none;
+    border-color: #FF9A5B;
+    box-shadow: 0 0 0 3px rgba(255, 154, 91, 0.25);
+    transform: translateY(-1px);
+}
+
+.form-item select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='1.2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 14px;
+    padding-right: 40px;
+    /* 矢印と文字が重ならないように余白確保 */
+}
+
+.form-item textarea {
+    resize: vertical;
+}
+
+.form-submit {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.form-submit button {
+    background-color: #605854;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 60px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit button:hover {
+    background-color: #e77c3a;
+}
+
+/* ==========================================
+    🐈　フッター
+   ========================================== */
+
+.nav-list-footer {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    /* メニューごとの間隔（好みの幅に調整してください） */
+    list-style: none;
+    /* 箇条書きのドット（点）を消す */
+    margin-bottom: 80px;
+    margin-left: 40px;
+    padding: 0;
+}
+
+footer p {
+    font-size: 10px;
+    margin-left: 40px;
+}
+
+
+/* ==========================================
+    🐈　トップに戻るボタン
+   ========================================== */
+#to-top-btn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #FF9A5B;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+
+    /* 初期状態：非表示＋少し下にずらしておく */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.3s ease;
+}
+
+/* JSで付与するクラス：表示状態 */
+#to-top-btn.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#to-top-btn:hover {
+    background-color: #e77c3a;
+}
+
+/* 矢印（CSSのみで作成） */
+.arrow-up {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(-45deg);
+    margin-top: 4px;
+    /* 矢印の重心を丸の中央に見せるための微調整 */
+}
+
+@media screen and (max-width: 600px) {
+    #to-top-btn {
+        right: 16px;
+        bottom: 16px;
+        width: 46px;
+        height: 46px;
+    }
+}
