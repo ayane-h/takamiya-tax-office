@@ -39,10 +39,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const btnObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    toTopBtn.classList.remove('is-visible');
-                } else {
-                    toTopBtn.classList.add('is-visible');
-                }
+                toTopBtn.classList.remove('is-visible');
+                if (header) header.classList.remove('is-scrolled');   // ← 追加
+            } else {
+                toTopBtn.classList.add('is-visible');
+                if (header) header.classList.add('is-scrolled');      // ← 追加
+            }
             });
         }, {
             threshold: 0
@@ -79,5 +81,63 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    /* ==========================================
+        🐈　よくあるご質問（FAQ）のスムーズな開閉
+       ========================================== */
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(function (item) {
+        const trigger = item.querySelector('.faq-trigger');
+        const content = item.querySelector('.faq-content');
+
+        if (!trigger || !content) return;
+
+        trigger.addEventListener('click', function (event) {
+            // ブラウザ標準の瞬時開閉をキャンセルし、高さアニメーションで開閉する
+            event.preventDefault();
+
+            if (item.classList.contains('is-animating')) return;
+
+            if (item.open) {
+                // 閉じる：現在の高さ→0へアニメーション
+                item.classList.add('is-animating');
+                content.style.height = content.scrollHeight + 'px';
+
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        content.style.height = '0px';
+                    });
+                });
+
+                content.addEventListener('transitionend', function onEnd() {
+                    content.removeEventListener('transitionend', onEnd);
+                    item.open = false;
+                    content.style.height = '';
+                    item.classList.remove('is-animating');
+                }, { once: true });
+
+            } else {
+                // 開く：0→本来の高さへアニメーション
+                item.open = true;
+                item.classList.add('is-animating');
+
+                const targetHeight = content.scrollHeight;
+                content.style.height = '0px';
+
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        content.style.height = targetHeight + 'px';
+                    });
+                });
+
+                content.addEventListener('transitionend', function onEnd() {
+                    content.removeEventListener('transitionend', onEnd);
+                    content.style.height = '';
+                    item.classList.remove('is-animating');
+                }, { once: true });
+            }
+        });
+    });
 
 });

@@ -94,6 +94,18 @@ ol[role="list"] {
     padding: 0;
     display: flex;
     align-items: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* ← 追加 */
+}
+
+header.is-scrolled {
+    background-color: transparent;
+}
+
+header.is-scrolled .logo {
+    opacity: 0;
+    transform: translateY(-16px);
+    pointer-events: none;
 }
 
 .logo a {
@@ -118,7 +130,6 @@ ol[role="list"] {
 header {
     height: 100px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 15px 4%;
     box-sizing: border-box;
@@ -128,12 +139,19 @@ header {
     left: 0;
     width: 100%;
     background-color: #fff;
+    border: none;
+    /* ← 追加：枠を明示的になくす */
+    box-shadow: none;
+    /* ← 追加 */
+    transition: background-color 0.3s ease;
+    /* ← 追加 */
     z-index: 200;
 }
 
 /* ナビゲーション全体のエリアを右側に寄せる */
 nav {
     margin-left: auto;
+    margin-right: 60px;
     /* ロゴがある場合、メニューを自動で右端に寄せます */
 }
 
@@ -142,11 +160,18 @@ nav {
     display: flex;
     align-items: center;
     gap: 24px;
-    /* メニューごとの間隔（好みの幅に調整してください） */
     list-style: none;
-    /* 箇条書きのドット（点）を消す */
     margin: 0;
     padding: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* ← 追加 */
+}
+
+/* ファーストビューを抜けたらリストだけ上にスライドして隠す */
+header.is-scrolled nav:not(.is-open) .nav-list {
+    opacity: 0;
+    transform: translateY(-16px);
+    pointer-events: none;
 }
 
 ul a {
@@ -157,16 +182,17 @@ ul a {
     /* 画面が狭くなっても文字が途中で改行されないようにする */
 }
 
-/* ハンバーガーボタンは常に表示 */
 .burger-btn {
-    display: block;
-    margin-left: auto;
+    position: absolute;
+    top: 50%;
+    right: 4%;
+    transform: translateY(-50%);
     width: 28px;
     height: 20px;
-    position: relative;
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 210;
 }
 
 .burger-btn span {
@@ -179,17 +205,27 @@ ul a {
     transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
 }
 
-.burger-btn span:nth-child(1) { top: 0; }
-.burger-btn span:nth-child(2) { top: 9px; }
-.burger-btn span:nth-child(3) { top: 18px; }
+.burger-btn span:nth-child(1) {
+    top: 0;
+}
+
+.burger-btn span:nth-child(2) {
+    top: 9px;
+}
+
+.burger-btn span:nth-child(3) {
+    top: 18px;
+}
 
 .burger-btn.is-active span:nth-child(1) {
     top: 9px;
     transform: rotate(45deg);
 }
+
 .burger-btn.is-active span:nth-child(2) {
     opacity: 0;
 }
+
 .burger-btn.is-active span:nth-child(3) {
     top: 9px;
     transform: rotate(-45deg);
@@ -199,7 +235,7 @@ ul a {
 nav.is-open {
     display: block;
     position: absolute;
-    top: 100px;
+    top: 0;
     left: 0;
     width: 100%;
     background-color: #fff;
@@ -386,20 +422,9 @@ main {
     margin-top: 0;
 }
 
-#concept-page h1 {
-    font-size: 46px;
-    /* カンプ通り48pxに設定 */
-    font-weight: normal;
-    line-height: 1.4;
-    margin-top: 0;
-    margin-bottom: 30px;
-    /* 見出しと本文の間の余白 */
-    max-width: 100%;
-}
-
 .section-body {
     flex: 1;
-    max-width: 520px;
+    max-width: 400px;
 }
 
 .section-body p {
@@ -834,6 +859,8 @@ main {
     margin: 0 auto;
     margin-right: 18%;
     padding: 16px 0 0;
+    overflow: hidden;
+    transition: height 0.4s ease;
 }
 
 /* ＋アイコン */
