@@ -574,7 +574,6 @@ main {
     /* カード内のコンテンツを左揃えに */
 }
 
-/* サービス内の画像が飛び出さないように調整 */
 .services-list li img {
     width: 100%;
     height: auto;

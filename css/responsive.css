@@ -71,6 +71,17 @@
 
 @media screen and (max-width: 900px) {
 
+    header.is-scrolled {
+        background-color: #FAF8F5;
+    }
+
+    /* ロゴのフェードアウト演出もスマホでは不要なので無効化 */
+    header.is-scrolled .logo {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+    }
+
     /* ----- ヘッダー／ハンバーガーメニュー ----- */
     header {
         height: 70px;
@@ -99,17 +110,18 @@
     }
 
     nav {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    height: 0;
-    overflow: hidden;
-    background-color: #ffffff;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    transition: height 0.9s cubic-bezier(0.22, 1, 0.36, 1);   /* ← 0.35s ease から変更 */
-    z-index: 199;
-}
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        background-color: #ffffff;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transition: height 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        /* ← 0.35s ease から変更 */
+        z-index: 199;
+    }
 
     nav.is-open {
         position: fixed;
@@ -138,15 +150,15 @@
     }
 
     .burger-btn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 32px;
-    height: 32px;
-    z-index: 210;
-}
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 32px;
+        height: 32px;
+        z-index: 210;
+    }
 
     .burger-btn span {
         display: block;
@@ -258,8 +270,6 @@
     .services-list li img {
         width: 100%;
         height: auto;
-        aspect-ratio: 4 / 3;
-        object-fit: cover;
         border-radius: 12px;
         margin: 0 0 16px;
     }
@@ -418,17 +428,17 @@
     }
 
     nav {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    height: 0;
-    overflow: hidden;
-    background-color: #ffffff;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    transition: height 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-    z-index: 199;
-}
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        background-color: #ffffff;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transition: height 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        z-index: 199;
+    }
 
     nav.is-open {
         position: fixed;
@@ -436,9 +446,9 @@
         left: 0;
         width: 100%;
         height: calc(100vh - 70px);
-    } */
+    }
 
-    .nav-list {
+    */ .nav-list {
         flex-direction: column;
         align-items: flex-start;
         gap: 0;
@@ -457,15 +467,15 @@
     }
 
     .burger-btn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 32px;
-    height: 32px;
-    z-index: 210;
-}
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 32px;
+        height: 32px;
+        z-index: 210;
+    }
 
     .burger-btn span {
         display: block;
