@@ -81,19 +81,13 @@
         z-index: 200;
     }
 
-<<<<<<< HEAD
-    main {
-    padding-top: 0px;
-    overflow: hidden;
-}
-=======
     /* ヘッダーがsticky（＝通常フローに戻る）になるため、
        main側の固定オフセット(padding-top:100px)は不要になる。
        残っているとヘッダーとメイン先頭の間に余白ができるのでリセットする。 */
     main {
         padding-top: 0;
     }
->>>>>>> dedb4d89f82bfeea85440f538350dcc85c60da3f
+
 
     .logo-text {
         font-size: 15px;
@@ -441,18 +435,6 @@
         top: 70px;
         left: 0;
         width: 100%;
-<<<<<<< HEAD
-        height: 0;
-        overflow: hidden;
-        background-color: #ffffff;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-        transition: height 0.35s ease;
-        z-index: 199;
-    }
-
-    /* nav.is-open {
-=======
->>>>>>> dedb4d89f82bfeea85440f538350dcc85c60da3f
         height: calc(100vh - 70px);
     } */
 
