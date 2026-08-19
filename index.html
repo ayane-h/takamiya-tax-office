@@ -18,9 +18,12 @@
 
 <body>
     <header id="header">
-        <h1 class="logo">
-            <p><a href="index.html"><img src="img/高木鷹の羽-黒.png" alt=""><span class="logo-text">鷹宮修司税理士事務所</span></a></p>
-        </h1>
+        <p class="logo">
+            <a href="index.html">
+                <img src="img/高木鷹の羽-黒.png" alt="鷹宮修司税理士事務所">
+                <span class="logo-text">鷹宮修司税理士事務所</span>
+            </a>
+        </p>
 
         <!-- メニューリスト -->
         <nav>
@@ -53,8 +56,10 @@
         <div class="wrapper">
             <!-- コンセプトページ -->
             <section id="concept-page" class="section-container">
-                <p class="sub-category">CONCEPT</p>
-                <h1 class="concept-title">創作に向き合う時間を、<br>もっと自由に。</h1>
+                <div class="heading-block">
+                    <p class="sub-category">CONCEPT</p>
+                    <h2 class="concept-title">創作に向き合う時間を、<br>もっと自由に。</h2>
+                </div>
 
                 <div class="concept-flex-container">
                     <!-- 【左エリア】文章 ＋ ボタン -->
@@ -65,7 +70,7 @@
 
                         <!-- ボタン（テキストの下） -->
                         <p class="btn-case-1-5">
-                            <a href="sub.html">
+                            <a href="about.html">
                                 <span class="txt">View more</span>
                                 <span class="arrow"></span>
                             </a>
@@ -79,8 +84,10 @@
 
             <!-- サービスページ -->
             <section id="service-page" class="section-container">
-                <p class="sub-category">SERVICE</p>
-                <h1>わたしたちができること。</h1>
+                <div class="heading-block">
+                    <p class="sub-category">SERVICE</p>
+                    <h2>わたしたちができること。</h2>
+                </div>
 
                 <ol class="services-list">
                     <li>
@@ -108,8 +115,10 @@
 
             <!-- 料金表ページ -->
             <section id="price-page" class="section-container">
-                <p class="sub-category">PRICE</p>
-                <h1>活動スタイルに合わせて選べる料金プラン。</h1>
+                <div class="heading-block">
+                    <p class="sub-category">PRICE</p>
+                    <h2>活動スタイルに合わせて選べる料金プラン。</h2>
+                </div>
 
                 <div class="price-container">
 
@@ -177,8 +186,10 @@
 
             <!-- ご相談の流れページ -->
             <section id="flow-page" class="section-container">
-                <p class="sub-category">FLOW</p>
-                <h1>ご相談の流れ</h1>
+                <div class="heading-block">
+                    <p class="sub-category">FLOW</p>
+                    <h2>ご相談の流れ</h2>
+                </div>
 
                 <div class="flow-container">
                     <div class="flowlist">
@@ -231,8 +242,10 @@
 
             <!-- よくあるご質問ページ -->
             <section id="faq-page" class="section-container">
-                <p class="sub-category">FAQ</p>
-                <h1>よくあるご質問</h1>
+                <div class="heading-block">
+                    <p class="sub-category">FAQ</p>
+                    <h2>よくあるご質問</h2>
+                </div>
 
                 <details class="faq-item">
                     <summary class="faq-trigger">
@@ -280,8 +293,10 @@
 
             <!-- お問い合わせページ -->
             <section id="contact-page" class="contact-section section-container">
-                <p class="sub-category">CONTACT</p>
-                <h1>お問い合わせ</h1>
+                <div class="heading-block">
+                    <p class="sub-category">CONTACT</p>
+                    <h2>お問い合わせ</h2>
+                </div>
 
                 <form action="" method="post" class="contact-form">
                     <!-- お問い合わせ種別 -->
@@ -314,7 +329,7 @@
                             <span>ふりがな</span>
                             <span class="required">必須</span>
                         </label>
-                        <input type="text" id="furigana" name="name" required placeholder="やまだ たろう">
+                        <input type="text" id="furigana" name="furigana" required placeholder="やまだ たろう">
                     </div>
 
                     <div class="form-item">
@@ -322,7 +337,7 @@
                             <span>メールアドレス</span>
                             <span class="required">必須</span>
                         </label>
-                        <input type="text" id="email" name="name" required placeholder="example@email.com">
+                        <input type="email" id="email" name="email" required placeholder="example@email.com">
                     </div>
 
                     <div class="form-item">

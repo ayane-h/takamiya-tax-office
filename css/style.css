@@ -88,14 +88,12 @@ ol[role="list"] {
     🐈　ヘッダー
    ========================================== */
 
-.logo,
-.logo p {
+.logo {
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
     transition: opacity 0.3s ease, transform 0.3s ease;
-    /* ← 追加 */
 }
 
 header.is-scrolled {
@@ -112,13 +110,13 @@ header.is-scrolled .logo {
     display: flex;
     align-items: center;
     text-decoration: none;
-    /* 念のためリンクの下線も消しておきます */
     color: #333;
-    /* 文字色を黒に固定 */
 }
 
 .logo img {
     width: 35px;
+    height: auto;
+    /* ← 念のため縦横比崩れ防止に追加 */
     margin-right: 6px;
 }
 
@@ -359,21 +357,54 @@ main {
 }
 
 /* ==========================================
-    🐈　コンセプトページ
-   ========================================== */
+    🐈　見出しブロック（サブカテゴリ＋h2/h3）統一ルール
+========================================== */
+.heading-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    /* サブカテゴリと見出しの間隔（お好みで調整） */
+    margin-bottom: 30px;
+    /* 元のh2のmargin-bottomをここに集約 */
+}
 
-/* 「CONCEPT」の縦書きテキスト（位置と回転の微調整） */
-.section-container .sub-category {
+.heading-block .sub-category {
+    margin: 0;
     font-size: 17px;
     letter-spacing: 0.1em;
-    position: absolute;
-    top: 0;
-    left: 0;
-    writing-mode: vertical-rl;
     white-space: nowrap;
     line-height: 1;
+    color: #333333;
+
+    writing-mode: vertical-rl;
+    /* ブラウザ標準の縦書き（高さは文字数に応じて自動） */
+    transform: rotate(180deg);
+    /* 先頭(S)が下・末尾(E)が上になるよう反転 */
+    flex-shrink: 0;
+}
+
+/* h2/h3側の個別marginはheading-block側に統一したのでリセット */
+.heading-block h2,
+.heading-block h3 {
     margin: 0;
 }
+
+/* ===== セクションごとの微調整（間隔・色だけ） ===== */
+#outline-page .heading-block {
+    margin-bottom: 40px;
+}
+
+#outline-page .sub-category {
+    color: #666666;
+}
+
+#profile-page .heading-block {
+    margin-bottom: 20px;
+}
+
+/* ==========================================
+    🐈　コンセプトページ
+   ========================================== */
 
 #concept-page {
     margin-top: 100px;
@@ -387,20 +418,12 @@ main {
     width: 100%;
 }
 
-#concept-page.section-container,
-#service-page.section-container,
-#price-page.section-container,
-#flow-page.section-container,
-#faq-page.section-container,
-#contact-page.section-container {
-    padding-left: 30px;
-    padding-right: 40px;
-}
-
 .section-container {
     position: relative;
     margin-top: 120px;
     margin-bottom: 120px;
+    padding-left: 30px;
+    padding-right: 40px;
     box-sizing: border-box;
 }
 
@@ -428,8 +451,8 @@ main {
 }
 
 .section-body p {
-    font-size: 20px;
-    line-height: 1.8;
+    font-size: 19px;
+    line-height: 2.1;
     margin-bottom: 24px;
 }
 
@@ -547,14 +570,12 @@ main {
 /* ==========================================
     🐈　サービスページ
    ========================================== */
-.section-container h1 {
-    font-size: 46px;
+.section-container h2 {
+    font-size: 32px;
     font-weight: normal;
     line-height: 1.4;
-    margin-top: 0;
-    margin-bottom: 30px;
-    margin-left: 0;
-    /*★左側のズレを防ぐため、マージンをリセット*/
+    margin: 0;
+    /* ★margin-top/bottom/leftすべてheading-blockに任せるので0に統一 */
 }
 
 .services-list {
@@ -1021,6 +1042,201 @@ main {
 }
 
 /* ==========================================
+   🐈 ご挨拶（MESSAGE）
+========================================== */
+
+/* 1. 写真と文章全体の横並び */
+.message-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+}
+
+/* 2. 写真の幅 */
+.message-img {
+    width: 400px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+/* 3. 右側の文章領域 */
+.message-text {
+    flex: 1;
+    margin-top: 110px;
+}
+
+/* 4. 文章の読みやすさ設定 */
+.message-text p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #333333;
+    margin-bottom: 1.5em;
+    /* 段落同士の余白 */
+}
+
+.message-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* 5. 署名の位置 */
+.message-text .signature {
+    text-align: right;
+    margin-top: 40px;
+}
+
+/* ==========================================
+    🐈　経歴
+   ========================================== */
+#profile-page {
+    margin-left: 50px;
+}
+
+/* -------------------------------------------
+   ★ 十字の線（#666666 / 1px）
+-------------------------------------------- */
+
+/* 横線 */
+#profile-page::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    /* 横線の高さ */
+    left: -50px;
+    /* PROFILEの左側からスタート */
+    width: 90px;
+    /* 横線の長さ */
+    height: 1px;
+    /* 線の太さ */
+    background-color: #666666;
+}
+
+/* 縦線 */
+#profile-page::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    /* 横線より上からスタート */
+    left: -25px;
+    /* 横線と交差する位置（PROFILEの左側） */
+    width: 1px;
+    /* 線の太さ */
+    height: 300px;
+    /* 縦線の長さ */
+    background-color: #666666;
+}
+
+/* 3. 経歴リストの位置設定 */
+#profile-page .profile-list {
+    margin-top: 40px;
+    margin-left: 80px;
+}
+
+.profile-item {
+    display: flex;
+    /* ★横並びにする */
+    align-items: baseline;
+    /* 文字の底辺（ベースライン）を綺麗に揃える */
+    margin-bottom: 12px;
+    /* 行ごとの間の余白 */
+}
+
+.profile-item dt {
+    width: 90px;
+    /* ★年の幅を固定（これで「1984年」などの幅が揃います） */
+    flex-shrink: 0;
+    /* 幅がつぶれないように保護 */
+    color: #333;
+}
+
+.profile-item dd {
+    margin: 0;
+    /* ブラウザ標準の余白をリセット */
+    line-height: 1.6;
+    color: #333;
+}
+
+#profile-page h3 {
+    margin: 0 0 20px 0;
+    font-size: 28px;
+    margin: 0;
+}
+
+/* ==========================================
+   🐈 事務所概要（OUTLINE）
+========================================== */
+
+#outline-page {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+
+    background-color: #F4F0EB !important;
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%23FAF8F5"/></svg>');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100% 60px;
+
+    padding-top: 100px;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+}
+
+.outline-content-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px 0 50px;
+    /* 左50px = MESSAGE側と同じ量 */
+    position: relative;
+    z-index: 1;
+}
+
+#outline-page h2 {
+    font-size: 32px;
+    font-weight: normal;
+    color: #333333;
+    line-height: 1.4;
+    margin: 0;
+    /* ★margin: 0 0 40px 0 → 0 に変更（40pxはheading-block側で管理） */
+}
+
+/* 4. 概要テーブル（右寄せ・15px・上下18px余白・#666666点線） */
+.outline-table {
+    width: 600px;
+    margin-left: auto;
+    /* 右寄せ */
+    border-collapse: collapse;
+    border-top: 1px dotted #666666;
+    /* 一番上の点線 */
+}
+
+.outline-table tr {
+    border-bottom: 1px dotted #666666;
+    /* 各行の間・一番下の点線 */
+}
+
+.outline-table th,
+.outline-table td {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333333;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    vertical-align: middle;
+}
+
+.outline-table th {
+    width: 180px;
+    font-weight: normal;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.outline-table td {
+    padding-left: 20px;
+}
+
+/* ==========================================
     🐈　フッター
    ========================================== */
 
@@ -1031,6 +1247,7 @@ main {
     /* メニューごとの間隔（好みの幅に調整してください） */
     list-style: none;
     /* 箇条書きのドット（点）を消す */
+    margin-top: 40px;
     margin-bottom: 80px;
     margin-left: 40px;
     padding: 0;

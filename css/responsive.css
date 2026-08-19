@@ -36,11 +36,6 @@
         left: 0;
     }
 
-    .section-container .sub-category {
-        font-size: 12px;
-        /* ← これだけ */
-    }
-
     .concept-title,
     .section-container h1 {
         font-size: 32px;
@@ -216,9 +211,6 @@
         margin-bottom: 90px;
     }
 
-    .sub-category {
-        font-size: 11px;
-    }
 
     .concept-title,
     .section-container h1 {

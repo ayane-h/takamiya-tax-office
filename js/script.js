@@ -35,23 +35,37 @@ document.addEventListener('DOMContentLoaded', function () {
     const toTopBtn = document.getElementById('to-top-btn');
     const mainvisual = document.getElementById('mainvisual');
 
-    if (toTopBtn && mainvisual) {
-        const btnObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                toTopBtn.classList.remove('is-visible');
-                if (header) header.classList.remove('is-scrolled');   // ← 追加
-            } else {
-                toTopBtn.classList.add('is-visible');
-                if (header) header.classList.add('is-scrolled');      // ← 追加
-            }
+    if (toTopBtn) {
+        if (mainvisual) {
+            // 【トップページ用】メインビジュアルがある場合はIntersectionObserverで監視
+            const btnObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        toTopBtn.classList.remove('is-visible');
+                        if (typeof header !== 'undefined' && header) header.classList.remove('is-scrolled');
+                    } else {
+                        toTopBtn.classList.add('is-visible');
+                        if (typeof header !== 'undefined' && header) header.classList.add('is-scrolled');
+                    }
+                });
+            }, {
+                threshold: 0
             });
-        }, {
-            threshold: 0
-        });
 
-        btnObserver.observe(mainvisual);
+            btnObserver.observe(mainvisual);
 
+        } else {
+            // 【about.htmlなどの下層ページ用】メインビジュアルがない場合：少しスクロールしたら表示
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 200) { // 200px以上スクロールしたら表示
+                    toTopBtn.classList.add('is-visible');
+                } else {
+                    toTopBtn.classList.remove('is-visible');
+                }
+            });
+        }
+
+        // スムーススクロール（全ページ共通）
         toTopBtn.addEventListener('click', function () {
             window.scrollTo({
                 top: 0,
@@ -139,5 +153,5 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-
+    
 });
