@@ -62,6 +62,35 @@
         line-height: 1.9;
     }
 
+    /* ----- about.html：ご挨拶ページ ----- */
+    .message-content {
+        gap: 40px;
+    }
+
+    .message-img {
+        width: 260px;
+    }
+
+    .message-text {
+        margin-top: 40px;
+        /* 110px → 40px。画像が小さくなる分、揃える余白を縮小 */
+    }
+
+    /* ----- about.html：経歴ページ ----- */
+    #profile-page {
+        margin-left: 30px;
+    }
+
+    #profile-page .profile-list {
+        margin-left: 50px;
+    }
+
+    /* ----- about.html：事務所概要ページ ----- */
+    .outline-table {
+        width: 100%;
+        max-width: 500px;
+    }
+
 }
 
 @media screen and (max-width: 900px) {
@@ -395,6 +424,105 @@
         width: 100%;
         padding: 14px 0;
     }
+
+    /* ----- about.html：ご挨拶ページ（横並び→縦並び） ----- */
+    .message-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .message-img {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .message-text {
+        margin-top: 0;
+        /* 縦積みになるので画像に揃える余白は不要 */
+    }
+
+    .message-text p {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .message-text .signature {
+        margin-top: 20px;
+    }
+
+    /* ----- about.html：経歴ページ ----- */
+    #profile-page {
+        margin-left: 0;
+    }
+
+    /* 十字の装飾線はPC想定の絶対配置座標のため、モバイルでは非表示にする */
+    #profile-page::before,
+    #profile-page::after {
+        display: none;
+    }
+
+    #profile-page .profile-list {
+        margin-top: 24px;
+        margin-left: 0;
+    }
+
+    .profile-item dt {
+        width: 70px;
+        font-size: 14px;
+    }
+
+    .profile-item dd {
+        font-size: 14px;
+    }
+
+    /* ----- about.html：事務所概要ページ（左半分中央にth／右半分（2/4〜）にtdを左寄せ） ----- */
+    .outline-content-inner {
+        padding: 0 24px;
+    }
+
+    .outline-table {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .outline-table,
+    .outline-table tbody {
+        display: block;
+    }
+
+    .outline-table tr {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        /* 50%/50%から全体を1/5左へ：thは約20%地点、tdは約40%地点から開始 */
+        align-items: baseline;
+        border-bottom: 1px dotted #666666;
+        padding: 14px 0;
+    }
+
+    .outline-table th,
+    .outline-table td {
+        display: block;
+        padding: 0;
+        vertical-align: baseline;
+    }
+
+    .outline-table th {
+        font-size: 13px;
+        font-weight: normal;
+        text-align: left;
+        /* padding-leftは「th自身の列幅(50%)」基準の%指定なので、
+           50%を指定すると画面全体の25%地点から文字が始まる */
+        padding-left: 40%;
+        color: #666666;
+    }
+
+    .outline-table td {
+        text-align: left;
+        /* 右半分(50%〜)の左端＝画面2/4あたりから開始 */
+        font-size: 15px;
+        word-break: break-word;
+    }
 }
 
 /* ---------- スマホ（〜600px） ---------- */
@@ -440,7 +568,7 @@
         height: calc(100vh - 70px);
     }
 
-    */ .nav-list {
+    .nav-list {
         flex-direction: column;
         align-items: flex-start;
         gap: 0;
@@ -609,6 +737,40 @@
         width: 44px;
         height: 44px;
     }
+
+    /* ----- about.html：ご挨拶ページ ----- */
+    .message-img {
+        max-width: 220px;
+    }
+
+    .message-text p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    /* ----- about.html：経歴ページ ----- */
+    .profile-item dt {
+        width: 60px;
+        font-size: 13px;
+    }
+
+    .profile-item dd {
+        font-size: 13px;
+    }
+
+    /* ----- about.html：事務所概要ページ ----- */
+    #outline-page {
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+
+    .outline-table th {
+        font-size: 12px;
+    }
+
+    .outline-table td {
+        font-size: 14px;
+    }
 }
 
 /* ---------- 小さめスマホ（〜400px） ---------- */
@@ -636,5 +798,31 @@
 
     .contact-form {
         padding: 24px 14px;
+    }
+
+    /* ----- about.html ----- */
+    .message-text p {
+        font-size: 13.5px;
+    }
+
+    .message-img {
+        max-width: 180px;
+    }
+
+    .profile-item dt {
+        width: 54px;
+        font-size: 12px;
+    }
+
+    .profile-item dd {
+        font-size: 13px;
+    }
+
+    .outline-table th {
+        font-size: 11px;
+    }
+
+    .outline-table td {
+        font-size: 13px;
     }
 }
