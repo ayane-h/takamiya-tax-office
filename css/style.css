@@ -387,6 +387,7 @@ main {
 .heading-block h2,
 .heading-block h3 {
     margin: 0;
+    font-weight: normal;
 }
 
 /* ===== セクションごとの微調整（間隔・色だけ） ===== */
